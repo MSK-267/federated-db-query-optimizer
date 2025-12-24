@@ -1,58 +1,189 @@
-# Federated DB Query Optimizer
+🌐 Federated DB Query Optimizer  
+Python 3.11 · PostgreSQL · MongoDB · Docker · License: MIT
 
-A **federated query engine prototype** that executes a single logical query across **PostgreSQL** and **MongoDB**, selecting an execution plan using a **cost-based optimizer**. :contentReference[oaicite:1]{index=1}
+The **Federated DB Query Optimizer** is a **federated query processing system** that enables a *single logical query* to be executed across **heterogeneous databases**, specifically **PostgreSQL (relational)** and **MongoDB (document-oriented)**, using a **cost-based query optimizer**.
 
-> Status: prototype / coursework-style system. Expect rough edges and incomplete SQL coverage.
+This project demonstrates the **core principles behind modern federated database systems**, including logical query planning, cost-based optimization, predicate pushdown, and cross-database execution — without requiring users to manually split or coordinate queries.
 
----
-
-## What this project does
-
-This project provides a minimal “federated DBMS” workflow:
-
-1. **Parse** an input query
-2. **Plan** it into an operator tree (scan / filter / join / group / sort, etc.)
-3. **Optimize** the plan with basic cost estimation (choose join order, pushdowns when possible)
-4. **Execute** subplans on:
-   - PostgreSQL for relational data
-   - MongoDB for document/event-style data
-5. **Combine** results and return them to the user
+Built for **database systems coursework and academic evaluation**, with an emphasis on **clarity, correctness, and architectural soundness**.
 
 ---
 
-## Key features
+## ✨ Key Features
 
-- **Federated execution** across PostgreSQL + MongoDB :contentReference[oaicite:2]{index=2}  
-- **Cost-based optimization** (prototype-level) :contentReference[oaicite:3]{index=3}
-- Simple demos/bench scripts to compare “optimized vs legacy” execution behavior
-- Docker Compose workflow for local setup (recommended)
+### 🎯 Federated Query Execution
+- Single-query execution across PostgreSQL and MongoDB
+- Unified query interface over heterogeneous data models
+- Centralized result merging at the coordinator
 
----
+### 🧠 Cost-Based Query Optimization
+- Logical → physical query plan transformation
+- Join order optimization
+- Predicate pushdown to source databases
+- Source-aware execution decisions
 
-## Repository layout (high-level)
+### ⚡ Efficient Execution Model
+- Reduced cross-database data movement
+- Join placement based on estimated cost
+- Optimized vs baseline execution comparison
 
-Typical layout in this repo:
-
-- `main.py` — primary entry point / CLI runner
-- `demo*.py` — demo runners for specific scenarios (timing, forcing legacy plans, etc.)
-- `docker-compose.yml` — local Postgres + Mongo setup
-- `exec/connectors/` — database connectors / adapters
-- `bench/` — benchmarking scripts / helpers
-
-(If your folder names differ slightly, edit this section.)
-
----
-
-## Prerequisites
-
-- Python 3.10+ (3.11+ recommended)
-- Docker + Docker Compose (recommended for local DBs)
-- A running PostgreSQL instance and a running MongoDB instance
+### 🧪 Academic & Systems-Focused Design
+- Clean operator abstraction
+- Readable optimizer logic
+- Deterministic demos for evaluation
+- Reproducible architecture via Docker
 
 ---
 
-## Quickstart (recommended: Docker Compose)
+## 📈 System Overview
 
-### 1) Start databases
-```bash
-docker compose up -d
+| Metric | Value |
+|------|------|
+| Databases Supported | PostgreSQL, MongoDB |
+| Query Model | Federated |
+| Optimizer | Heuristic Cost-Based |
+| Execution Engine | Single-node Coordinator |
+| Target Use | Systems Coursework / Research |
+| SQL Coverage | Subset (Select, Join, Filter, Group) |
+
+---
+
+## 🏗️ Architecture
+
+┌──────────────────────────────────────────────┐
+│ Federated Query Optimizer Architecture │
+└──────────────────────────────────────────────┘
+│
+User Query
+│
+▼
+Query Parser
+│
+▼
+Logical Plan
+(Operator Tree)
+│
+▼
+Cost-Based Optimizer
+│
+▼
+Execution Engine
+┌────────────┴────────────┐
+▼ ▼
+[PostgreSQL Connector] [MongoDB Connector]
+│ │
+└────────────┬────────────┘
+▼
+Result Merger
+│
+▼
+Final Output
+
+yaml
+Copy code
+
+---
+
+## 🧩 Technology Stack
+
+### Backend
+- **Language**: Python 3.11
+- **Query Engine**: Custom logical & physical operators
+- **Optimization**: Heuristic cost estimation model
+
+### Databases
+- **PostgreSQL 16+** — relational query execution
+- **MongoDB 6+** — document-based execution
+
+### Infrastructure
+- **Docker Compose** — multi-database orchestration
+- **Virtual Environments** — dependency isolation
+
+---
+
+## 🧠 Optimizer Design
+
+The optimizer evaluates multiple candidate execution plans using a **heuristic cost model** that considers:
+
+- Estimated cardinality of intermediate results
+- Predicate selectivity
+- Join placement cost
+- Cross-database data transfer overhead
+- Source-specific execution efficiency
+
+The final plan minimizes **total estimated execution cost**, not just local execution time.
+
+---
+
+## 🔬 Query Scope (Prototype)
+
+Supported query features include:
+- `SELECT`
+- `FROM`
+- `WHERE`
+- Basic `JOIN`
+- Simple `GROUP BY`
+
+Not supported:
+- Nested subqueries
+- Window functions
+- Transactions
+- Stored procedures
+
+This scoped design is **intentional** and aligned with academic objectives.
+
+---
+
+## 📂 Project Structure
+
+federated-db-query-optimizer/
+├── main.py # Query engine entry point
+├── demo.py # Federated query demo
+├── demo_timing.py # Optimized vs baseline timing
+├── demo_force_legacy.py # Baseline execution path
+├── optimizer/ # Cost model & plan selection
+├── executor/ # Physical execution operators
+├── connectors/ # PostgreSQL & MongoDB adapters
+├── bench/ # Benchmark scripts
+├── docker-compose.yml # Database orchestration
+├── requirements.txt
+└── README.md
+
+yaml
+Copy code
+
+---
+
+## ⚠️ Limitations
+
+- Partial SQL support (prototype scope)
+- No distributed transaction management
+- Single-node coordinator
+- Heuristic (non-statistical) cost model
+
+These limitations are **expected** for a pedagogical federated database system.
+
+---
+
+## 🛣️ Roadmap
+
+- Runtime statistics–driven cost model
+- Rule-based query rewrite phase
+- Query plan visualization
+- Support for additional data sources
+- Automated regression tests
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## 📧 Contact
+
+Project Author  
+GitHub: https://github.com/MSK-267  
+
+⭐ If this project helped demonstrate federated database concepts, please consider starring the repositor
