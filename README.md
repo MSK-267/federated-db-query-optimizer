@@ -49,7 +49,6 @@ Built for **database systems coursework and academic evaluation**, with an empha
 ---
 
 ## 🏗️ Architecture
-
 ┌──────────────────────────────────────────────┐
 │ Federated Query Optimizer Architecture │
 └──────────────────────────────────────────────┘
@@ -78,9 +77,6 @@ Result Merger
 │
 ▼
 Final Output
-
-yaml
-Copy code
 
 ---
 
@@ -149,9 +145,6 @@ federated-db-query-optimizer/
 ├── requirements.txt
 └── README.md
 
-yaml
-Copy code
-
 ---
 
 ## ⚠️ Limitations
@@ -187,3 +180,4 @@ Project Author
 GitHub: https://github.com/MSK-267  
 
 ⭐ If this project helped demonstrate federated database concepts, please consider starring the repositor
+
