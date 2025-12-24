@@ -133,7 +133,7 @@ This scoped design is **intentional** and aligned with academic objectives.
 
 ## 📂 Project Structure
 
-```
+
 federated-db-query-optimizer/
 ├── main.py                 # Query engine entry point
 ├── demo.py                 # Federated query demo
@@ -146,7 +146,6 @@ federated-db-query-optimizer/
 ├── docker-compose.yml      # Database orchestration
 ├── requirements.txt
 └── README.md
-```
 
 ---
 
@@ -183,5 +182,6 @@ Project Author
 GitHub: https://github.com/MSK-267  
 
 ⭐ If this project helped demonstrate federated database concepts, please consider starring the repositor
+
 
 
