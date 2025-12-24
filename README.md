@@ -49,34 +49,35 @@ Built for **database systems coursework and academic evaluation**, with an empha
 ---
 
 ## 🏗️ Architecture
+```
 ┌──────────────────────────────────────────────┐
-│ Federated Query Optimizer Architecture │
+│     Federated Query Optimizer Architecture   │
 └──────────────────────────────────────────────┘
-│
-User Query
-│
-▼
-Query Parser
-│
-▼
-Logical Plan
-(Operator Tree)
-│
-▼
-Cost-Based Optimizer
-│
-▼
-Execution Engine
-┌────────────┴────────────┐
-▼ ▼
-[PostgreSQL Connector] [MongoDB Connector]
-│ │
-└────────────┬────────────┘
-▼
-Result Merger
-│
-▼
-Final Output
+                    │
+              User Query
+                    │
+                    ▼
+              Query Parser
+                    │
+                    ▼
+              Logical Plan
+             (Operator Tree)
+                    │
+                    ▼
+          Cost-Based Optimizer
+                    │
+                    ▼
+           Execution Engine
+         ┌────────────┴────────────┐
+         ▼                         ▼
+[PostgreSQL Connector]    [MongoDB Connector]
+         │                         │
+         └────────────┬────────────┘
+                      ▼
+              Result Merger
+                      │
+                      ▼
+               Final Output
 
 ---
 
@@ -132,18 +133,20 @@ This scoped design is **intentional** and aligned with academic objectives.
 
 ## 📂 Project Structure
 
+```
 federated-db-query-optimizer/
-├── main.py # Query engine entry point
-├── demo.py # Federated query demo
-├── demo_timing.py # Optimized vs baseline timing
-├── demo_force_legacy.py # Baseline execution path
-├── optimizer/ # Cost model & plan selection
-├── executor/ # Physical execution operators
-├── connectors/ # PostgreSQL & MongoDB adapters
-├── bench/ # Benchmark scripts
-├── docker-compose.yml # Database orchestration
+├── main.py                 # Query engine entry point
+├── demo.py                 # Federated query demo
+├── demo_timing.py          # Optimized vs baseline timing
+├── demo_force_legacy.py    # Baseline execution path
+├── optimizer/              # Cost model & plan selection
+├── executor/               # Physical execution operators
+├── connectors/             # PostgreSQL & MongoDB adapters
+├── bench/                  # Benchmark scripts
+├── docker-compose.yml      # Database orchestration
 ├── requirements.txt
 └── README.md
+```
 
 ---
 
@@ -180,4 +183,5 @@ Project Author
 GitHub: https://github.com/MSK-267  
 
 ⭐ If this project helped demonstrate federated database concepts, please consider starring the repositor
+
 
